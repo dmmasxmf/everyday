@@ -1,0 +1,2 @@
+# everyday
+每天
