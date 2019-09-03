@@ -15,6 +15,7 @@
         <module name="springboot-multidata-druid" />
         <module name="springboot-quartz-manage" />
         <module name="springboot-quartz-test" />
+        <module name="springboot-reids" />
         <module name="springboot-task-mapper" />
         <module name="springboot_apiversion" />
         <module name="springboot_config" />
