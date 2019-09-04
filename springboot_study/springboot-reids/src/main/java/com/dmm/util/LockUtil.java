@@ -1,5 +1,6 @@
 package com.dmm.util;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -13,6 +14,7 @@ import java.util.concurrent.TimeUnit;
  * @create 2019/9/3
  */
 @Component
+@Slf4j
 public class LockUtil {
 
     @Value("${expire.time}")
@@ -31,6 +33,7 @@ public class LockUtil {
 
         ////相当于SETNX指令，setIfAbsent方法设置了返回true,没有设置返回false
         if(redisTemplate.opsForValue().setIfAbsent(key,value)){
+            log.info("取锁");
             return redisTemplate.expire(key,expireTime, TimeUnit.SECONDS);
         }
         //假设currentValue=A   接下来并发进来的两个线程的value都是B  其中一个线程拿到锁,除非从始至终所有都是在并发（实际上这中情况是不存在的），只要开始时有数据有先后顺序，则分布式锁就不会出现“多卖”的现象
@@ -57,7 +60,8 @@ public class LockUtil {
     public void unlock(String key,String value){
         try {
             String currentValue =(String) redisTemplate.opsForValue().get(key);
-            if(StringUtils.isEmpty(currentValue) && currentValue.equals(value)){
+            if(!StringUtils.isEmpty(currentValue) && currentValue.equals(value)){
+                log.info("解锁");
                 redisTemplate.opsForValue().getOperations().delete(key);
             }
         } catch (Exception e) {

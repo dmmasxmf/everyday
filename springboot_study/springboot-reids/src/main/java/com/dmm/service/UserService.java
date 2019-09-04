@@ -11,5 +11,7 @@ public interface UserService {
 
     String modifyUser(User user);
 
+    String test();
+
 }
 

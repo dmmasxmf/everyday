@@ -12,15 +12,23 @@ spring:
   redis:
     password: 123456
     database: 0
-  session:
-    #会话存储类型
-    store-type: redis
+  # 项目名称
+  application:
+    name: dmm
+#  session:
+#    #会话存储类型
+#    store-type: redis
 mybatis:
   mapper-locations: mapper/**Mapper.xml
   type-aliases-package: com.dmm.entry
 expire:
   time: 60
 
-logging:
-  level:
-    com.dmm.mapper: debug
+#logging:
+#  level:
+#    com.dmm.mapper: debug
+logback:
+   logDir: ./log
+#   level: error
+#logging:
+#  config: classpath:logback-spring.xml
