@@ -39,11 +39,14 @@
 
         <!--redis缓存-->
         <!--spring session 与redis应用基本环境配置 -->
-        <dependency>
-            <!--解决spring中session共享的问题-->
-            <groupId>org.springframework.session</groupId>
-            <artifactId>spring-session-data-redis</artifactId>
-        </dependency>
+        <!--<dependency>-->
+            <!--&lt;!&ndash;解决spring中session共享的问题&ndash;&gt;-->
+
+            <!--&lt;!&ndash;在模拟高并发的时候，会出现存储cookie，spring-session的现象-->
+            <!--解决 不添加jar  或者 在集合设置中不保存cookie的设置&ndash;&gt;-->
+            <!--<groupId>org.springframework.session</groupId>-->
+            <!--<artifactId>spring-session-data-redis</artifactId>-->
+        <!--</dependency>-->
 
         <!-- springboot整合redis -->
         <!--spring boot 与redis应用基本环境配置 -->

@@ -12,6 +12,7 @@ spring:
   redis:
     password: 123456
     database: 0
+
   # 项目名称
   application:
     name: dmm

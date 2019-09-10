@@ -37,6 +37,7 @@
 
     <logger name="com.dmm" additivity="false" level="INFO">
         <appender-ref ref="file"/>
+        <appender-ref ref="STDOUT"/>
     </logger>
 
     <!--日志等级受同一个文件的其他logger的影响-->
@@ -45,6 +46,7 @@
     <!--</logger>-->
     <logger name="com.dmm.mapper" additivity="false" level="DEBUG">
         <appender-ref ref="file"/>
+        <appender-ref ref="STDOUT"/>
     </logger>
 
 

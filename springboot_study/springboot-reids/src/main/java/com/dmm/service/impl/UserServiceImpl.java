@@ -5,11 +5,13 @@ import com.dmm.entry.UserExample;
 import com.dmm.mapper.UserMapper;
 import com.dmm.service.UserService;
 import com.dmm.util.LockUtil;
+import com.dmm.util.LockUtil2;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Map;
 import java.util.UUID;
 
 /**
@@ -26,6 +28,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private LockUtil lockUtil;
+
+    @Autowired
+    private LockUtil2 lockUtil2;
 
     @Override
     public String modifyUser(User user) {
@@ -45,7 +50,7 @@ public class UserServiceImpl implements UserService {
             //System.out.println(1/0);
             int i=userMapper.updateByExampleSelective(user,userExample);
             if(i==1){
-               return "并发量不是太多了，换个姿势再试试！";
+               return "并发量不是太多了，换个姿势再试试！————————————————————————————————————————";
             }
             return "后台出错了1";
         } catch (Exception e) {
@@ -53,7 +58,7 @@ public class UserServiceImpl implements UserService {
             log.info("异常info->{} ",e.getMessage(),e);
             log.error("异常error->{} ",e.getMessage(),e);
             return "后台出错了2";
-        }finally {
+        } finally {
             lockUtil.unlock(user.getId().toString(),value);
         }
 
@@ -70,5 +75,33 @@ public class UserServiceImpl implements UserService {
 //        }
         return "万岁";
     }
+
+    @Override
+    public String test2(Map map) {
+        return String.valueOf(lockUtil2.incrNum((String) map.get("key"), Long.valueOf((String)map.get("value"))));
+    }
+
+    @Override
+    public String test22() {
+        return String.valueOf(lockUtil2.getVMSerialNum());
+    }
+
+    @Override
+    public long test23() {
+        return lockUtil2.get();
+    }
+
+    @Override
+    public void test24() {
+        lockUtil2.set();
+    }
+
+    @Override
+    public void test25() {
+        lockUtil2.set2();
+    }
+
+
+
 }
 

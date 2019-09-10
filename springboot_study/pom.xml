@@ -21,6 +21,7 @@
         <module>springboot-quartz</module>
         <module>springboot-mq-test</module>
         <module>springboot-reids</module>
+        <module>springboot-redis-limit</module>
     </modules>
 
     <packaging>pom</packaging>
