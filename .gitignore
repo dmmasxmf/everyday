@@ -20,6 +20,7 @@
 *.rar
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
-/.idea/
-/target/
+# hs_err_pid*
+# 忽略提交的内容，**/.idea/ 是指不管前面有多少层 /.idea/ 根目录下
+**/.idea/
+**/target/
