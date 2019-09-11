@@ -1,5 +1,6 @@
 package com.dmm;
 
+import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
@@ -9,6 +10,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication(scanBasePackages = "com.dmm")
 public class QuartzTestApplication {
 
-
+    public static void main(String[] args) {
+        SpringApplication.run(QuartzTestApplication.class,args);
+    }
 }
 
