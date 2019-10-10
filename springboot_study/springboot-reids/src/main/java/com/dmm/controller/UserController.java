@@ -82,5 +82,10 @@ public class UserController {
         return stringRedisTemplate.opsForValue().get("dmm");
     }
 
+    @PostMapping("/test/transaction")
+    public String testTransaction(){
+        return userService.testTransaction();
+    }
+
 }
 

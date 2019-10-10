@@ -35,7 +35,7 @@
 
     <!--  level 表示要输出的日志级别，如果在service输出的日志级别低于此，则不输出-->
 
-    <logger name="com.dmm" additivity="false" level="INFO">
+    <logger name="com.dmm" additivity="false" level="debug">
         <appender-ref ref="file"/>
         <appender-ref ref="STDOUT"/>
     </logger>
@@ -51,7 +51,7 @@
 
 
     <!--控制台输出级别-->
-    <root level="INFO">
+    <root level="debug">
 
         <appender-ref ref="STDOUT"/>
         <!--<appender-ref ref="file" />-->

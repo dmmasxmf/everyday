@@ -9,7 +9,10 @@ import com.dmm.util.LockUtil2;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
 import java.util.Map;
 import java.util.UUID;
@@ -19,7 +22,7 @@ import java.util.UUID;
  * @create 2019/9/3
  */
 @Service
-@Transactional
+@Transactional(rollbackFor = Exception.class,isolation = Isolation.DEFAULT,propagation = Propagation.REQUIRED)
 @Slf4j
 public class UserServiceImpl implements UserService {
 
@@ -101,6 +104,48 @@ public class UserServiceImpl implements UserService {
         lockUtil2.set2();
     }
 
+    @Override
+    @Transactional
+    public String testTransaction() {
+
+        UserExample userExample=new UserExample();
+        userExample.createCriteria().andIdEqualTo(15L);
+
+        userMapper.selectByExample(userExample);
+
+        try {
+
+            for(long l=15;l<17;l++){
+
+                User user=new User();
+                user.setName("杜明明"+l);
+                userExample.clear();
+                userExample.createCriteria().andIdEqualTo(l);
+                userMapper.updateByExampleSelective(user,userExample);
+
+                if(l==16){
+                    System.out.println(1/0);
+                }
+
+
+            }
+
+        } catch (Exception e) {
+            TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+            log.info(e.getMessage());
+            return "一岁";
+        }
+
+        return "万岁";
+    }
+
+    @Override
+    @Transactional
+    public boolean abc() {
+
+        System.out.println(1/0);
+        return false;
+    }
 
 
 }

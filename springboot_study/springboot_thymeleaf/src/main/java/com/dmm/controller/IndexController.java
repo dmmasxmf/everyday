@@ -14,7 +14,16 @@ public class IndexController {
     public String ii(Model model){
 
         model.addAttribute("name","给本次发布会VB dfebvabv");
-        return "index";
+
+        return "upload";
+    }
+
+    @RequestMapping("/indexs")
+    public String iii(Model model){
+
+        model.addAttribute("name","给本次发布会VB dfebvabv");
+
+        return "uploads";
     }
 }
 

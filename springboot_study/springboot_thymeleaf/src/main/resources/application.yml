@@ -2,3 +2,9 @@ spring:
   thymeleaf:
     suffix: .html
     cache: true
+  servlet:
+    multipart:
+#      单个文件大小
+      max-file-size: 50Mb
+#      所有文件大小
+      max-request-size: 500Mb

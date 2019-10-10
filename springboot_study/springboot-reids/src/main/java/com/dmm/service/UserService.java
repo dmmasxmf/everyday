@@ -25,5 +25,9 @@ public interface UserService {
 
     void test25();
 
+    String testTransaction();
+
+    boolean abc();
+
 }
 
