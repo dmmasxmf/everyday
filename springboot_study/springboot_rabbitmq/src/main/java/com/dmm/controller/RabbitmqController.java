@@ -61,4 +61,10 @@ public class RabbitmqController {
         productMq.send();
     }
 
+    @RequestMapping(value = "/id/{id}")
+    public void sendMq10(@PathVariable Long id){
+        System.out.println(id+"0000000000000000");
+        rabbitmqUtils.sendId(id);
+    }
+
 }

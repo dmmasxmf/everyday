@@ -83,8 +83,6 @@ public class TaskJob {
 
         String[] r=fileName.split("\\.");
 
-        System.out.println();
-
         String [] s=file.list();
 
         //StringBuilder stringBuilder=new StringBuilder(fileName);

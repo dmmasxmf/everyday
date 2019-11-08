@@ -1,11 +1,22 @@
 package com.dmm.util;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.PropertyAccessor;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.connection.RedisConnection;
+import org.springframework.data.redis.core.Cursor;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.ScanOptions;
+import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
+import org.springframework.data.redis.serializer.StringRedisSerializer;
 import org.springframework.stereotype.Component;
 
+import java.io.IOException;
+import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
+import java.util.function.Consumer;
 
 /**
  *
@@ -135,6 +146,111 @@ public class RedisTool {
         //redisTemplate.setValueSerializer(new JdkSerializationRedisSerializer());
         redisTemplate.opsForValue().set(key,value);
     }
+    public void getPattern(String key,String pattern,long count) throws IOException {
+        // 使用Jackson2JsonRedisSerialize 替换默认序列化
+        Jackson2JsonRedisSerializer jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer(Object.class);
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
+        objectMapper.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
+
+        jackson2JsonRedisSerializer.setObjectMapper(objectMapper);
+        // 设置value的序列化规则和 key的序列化规则
+        redisTemplate.setValueSerializer(jackson2JsonRedisSerializer);
+        redisTemplate.setKeySerializer(new StringRedisSerializer());
+        redisTemplate.afterPropertiesSet();
+        Cursor<Map.Entry<Object,Object>> cursor = redisTemplate.opsForHash().scan(key,
+                ScanOptions.scanOptions().match(pattern).count(count).build()
+        );
+        try {
+
+            while (cursor.hasNext()) {
+//            Object key = cursor.next().getKey();
+//            Set<Object> valueSet = cursor.next().getValue();
+//                Object object = cursor.next();
+                //Object object1=cursor.next().getKey();
+
+                Object a = cursor.next().getKey().toString();
+                Object valueSet = cursor.next().getValue();
+                System.out.println("通过scan(K key, ScanOptions options)方法获取匹配的值:" + a);
+
+                //System.out.println("通过scan(K key, ScanOptions options)方法获取匹配的值-----------------:" + object);
+//            System.out.println(key+"___________________");
+
+//            for (Object s:valueSet){
+//                System.out.println(s);
+//            }
+            }
+        }finally {
+            cursor.close();
+        }
+
+        System.out.println("+++++++++++++++++++++++++++++");
+
+    }
+
+    /**
+     * scan 实现
+     * @param pattern    表达式
+     * @param consumer    对迭代到的key进行操作
+     */
+    public void scan(String pattern, Consumer<byte[]> consumer) {
+        this.redisTemplate.execute((RedisConnection connection) -> {
+            try (Cursor<byte[]> cursor = connection.scan(ScanOptions.scanOptions().count(Long.MAX_VALUE).match(pattern).build())) {
+                cursor.forEachRemaining(consumer);
+                return null;
+            } catch (IOException e) {
+                e.printStackTrace();
+                throw new RuntimeException(e);
+            }
+        });
+    }
+
+    public void hset(String key,String ... value){
+        redisTemplate.opsForSet().add(key,value);
+    }
+
+
+//    public Set<String> scan(String matchKey) {
+//
+//        Set<String> keys = redisTemplate.execute((RedisCallback<Set<String>>) connection -> {
+//            Set<String> keysTmp = new HashSet<>();
+//            Cursor<byte[]> cursor = connection.scan(new ScanOptions.ScanOptionsBuilder().match("*" + matchKey + "*").count(1000).build());
+//            while (cursor.hasNext()) {
+//                keysTmp.add(new String(cursor.next()));
+//            }
+//            return keysTmp;
+//        });
+//
+//        return keys;
+//    }
+
+//    public Set<String> scan(String key) {
+//        return redisTemplate.execute((RedisCallback<Set<String>>) connection -> {
+//            Set<String> keys = Sets.newHashSet();
+//
+//            JedisCommands commands = (JedisCommands) connection.getNativeConnection();
+//            MultiKeyCommands multiKeyCommands = (MultiKeyCommands) commands;
+//
+//            ScanParams scanParams = new ScanParams();
+//            scanParams.match("*" + key + "*");
+//            scanParams.count(1000);
+//            ScanResult<String> scan = multiKeyCommands.scan("0", scanParams);
+//            while (null != scan.getStringCursor()) {
+//                keys.addAll(scan.getResult());
+//                if (!StringUtils.equals("0", scan.getStringCursor())) {
+//                    scan = multiKeyCommands.scan(scan.getStringCursor(), scanParams);
+//                    continue;
+//                } else {
+//                    break;
+//                }
+//            }
+//
+//            return keys;
+//        });
+//    }
+
+
 
 }
 
