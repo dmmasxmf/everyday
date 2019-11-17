@@ -1,2 +1,2 @@
 # everyday
-每天
+每天测试deepin
