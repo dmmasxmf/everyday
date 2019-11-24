@@ -16,8 +16,8 @@ public class AAABBB {
     public static void main(String[] args) throws DbMakerConfigException, IOException {
 
 
-        //ip  60.186.219.158 220.248.12.158
-        String ip="220.248.12.158";
+        //ip  60.186.219.158 220.248.12.158 60.186.219.158 0.0.0.0
+        String ip="192.168.123.12";
 
         // 判断是否为IP地址 (可用)
         boolean isIpAddress = Util.isIpAddress(ip);
