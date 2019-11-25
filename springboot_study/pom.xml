@@ -27,6 +27,7 @@
         <module>springboot-neo4j</module>
         <module>springboot-async</module>
         <module>springboot-easyexcel</module>
+        <module>springboot-mongodb</module>
     </modules>
 
     <packaging>pom</packaging>

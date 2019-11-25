@@ -11,7 +11,7 @@ import org.springframework.cache.annotation.EnableCaching;
  */
 @SpringBootApplication
 @MapperScan(value = "com.dmm.mapper")
-@EnableCaching
+@EnableCaching//开启缓存
 public class CacheApplication {
 
     public static void main(String[] args) {
