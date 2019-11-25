@@ -18,7 +18,7 @@ server:
 spring:
   mail:
     username: DuMM@yunzhiqu.com
-    password: 19960727Duming
+    password: 19960727DUming
     host: smtp.exmail.qq.com
     properties: {"mail.smtp.auth":"true","mail.smtp.socketFactory.fallback":"false",
                  "mail.smtp.socketFactory.port":"465","mail.smtp.socketFactory.class":"javax.net.ssl.SSLSocketFactory",
