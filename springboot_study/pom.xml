@@ -28,6 +28,7 @@
         <module>springboot-async</module>
         <module>springboot-easyexcel</module>
         <module>springboot-mongodb</module>
+        <module>springboot-java-basics</module>
     </modules>
 
     <packaging>pom</packaging>
