@@ -8,12 +8,16 @@ import org.springframework.stereotype.Component;
 import java.io.IOException;
 
 @Component
-
 public class ConsumerMq {
+
+    public static int i=0;
 
     @RabbitListener(queues = "hello")
     public void process(Message message, Channel channel) throws IOException {
-        channel.basicAck(message.getMessageProperties().getDeliveryTag(),true);
+        i++;
+        System.out.println("------------------------------------"+i+message);
+        //channel.basicAck(message.getMessageProperties().getDeliveryTag(),true);
+        System.out.println(1/0);
         System.out.println(message.getBody().toString()+"===============");
     }
 
