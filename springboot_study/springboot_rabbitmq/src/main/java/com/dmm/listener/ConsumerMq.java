@@ -17,7 +17,7 @@ public class ConsumerMq {
         i++;
         System.out.println("------------------------------------"+i+message);
         //channel.basicAck(message.getMessageProperties().getDeliveryTag(),true);
-        System.out.println(1/0);
+        //System.out.println(1/0);
         System.out.println(message.getBody().toString()+"===============");
     }
 
