@@ -56,6 +56,8 @@ public class MyConsumer extends DefaultConsumer {
             e.printStackTrace();
         }
         //返回确认状态
+        //delivery tag 的范围仅限于 Channel
+        //当该参数为 true 时，则可以一次性确认 delivery_tag 小于等于传入值的所有消息
         getChannel().basicAck(envelope.getDeliveryTag(),false);
 
 
