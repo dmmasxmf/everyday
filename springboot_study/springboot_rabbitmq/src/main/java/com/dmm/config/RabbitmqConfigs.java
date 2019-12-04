@@ -1,26 +1,16 @@
 package com.dmm.config;
 
-import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.Configuration;
 
-@Component
+@Configuration
 public class RabbitmqConfigs{
 
     @Autowired
     private CachingConnectionFactory connectionFactory;
-
-
-//    @Resource
-//    private RabbitTemplate rabbitTemplate;
-
-    @Bean
-    public Queue helloQueue(){
-        return new Queue("hello");
-    }
 
     @Bean
     public RabbitTemplate rabbitTemplate() {

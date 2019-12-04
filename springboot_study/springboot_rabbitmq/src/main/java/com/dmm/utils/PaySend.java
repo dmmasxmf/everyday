@@ -17,7 +17,6 @@ public class PaySend {
     @Autowired
     private AmqpTemplate rabbitmqTemplate;
 
-
     public void paysend1(){
         rabbitmqTemplate.convertAndSend("pay","dmm");
     }

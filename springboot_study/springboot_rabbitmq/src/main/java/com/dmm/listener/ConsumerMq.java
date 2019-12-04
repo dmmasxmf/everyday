@@ -14,7 +14,7 @@ public class ConsumerMq {
 
     @RabbitListener(queues = "hello")
     public void process(Message message, Channel channel) throws IOException {
-//        i++;
+        
         System.out.println("------------------------------------"+message);
 
         //System.out.println(1/0);
