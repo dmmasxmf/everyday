@@ -18,6 +18,7 @@ public class ConsumerMq {
         System.out.println("------------------------------------"+message);
 
         //System.out.println(1/0);
+
         if(new String(message.getBody()).equals("error")){
             /**
              *  消息的标记+多次确认吗+是否重新入队
