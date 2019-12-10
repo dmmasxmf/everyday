@@ -12,7 +12,7 @@ spring:
   redis:
     password: 123456
     database: 0
-    host: 192.168.6.63
+    host: 127.0.0.1
 
   # 项目名称
   application:

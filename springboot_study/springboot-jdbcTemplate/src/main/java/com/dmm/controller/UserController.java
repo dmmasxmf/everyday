@@ -71,7 +71,13 @@ public class UserController {
     @RequestMapping("/note/{name}/{password}")
     @ResponseBody
     public String list(@PathVariable String name,@PathVariable String password){
-        userService.addUser(name,password);
+        try {
+            userService.addUser2(name,password);
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+        }
+        //userService.addUser2(name,password);
         return "完美";
     }
     @RequestMapping("/note/{name}/")

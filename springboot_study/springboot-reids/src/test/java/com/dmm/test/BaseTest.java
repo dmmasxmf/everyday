@@ -5,6 +5,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.io.IOException;
@@ -56,7 +57,14 @@ public class BaseTest {
 
         redisTool.getPattern("a","abc*",5L);
     }
+    @Autowired
+    RedisTemplate redisTemplate;
 
+    @Test
+    public void testIncr(){
+        System.out.println("===========+=================="+redisTemplate.opsForHash().increment("DMM","DMM:1",1L)+"------------------------");
 
+        System.out.println(Long.toHexString(redisTemplate.opsForHash().increment("DMM","DMM:1",1L)));
+    }
 }
 

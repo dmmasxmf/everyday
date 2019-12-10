@@ -27,5 +27,10 @@ public interface UserService {
     void addUser(String name,String password);
 
     User findUser(String name);
+
+    void addUser2(String name,String password);
+
+    void test();
+
 }
 

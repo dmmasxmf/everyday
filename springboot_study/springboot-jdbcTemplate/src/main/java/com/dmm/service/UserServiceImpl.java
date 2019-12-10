@@ -5,10 +5,12 @@ import com.dmm.entry.User;
 import com.dmm.entry.UserExample;
 import com.dmm.mapper.UserMapper;
 import com.dmm.mapper.UserNoteMapper;
+import com.dmm.service.interfaces.PersonService;
 import com.dmm.service.interfaces.UserService;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -75,12 +77,24 @@ public class UserServiceImpl implements UserService {
 
     }
 
+    @Autowired
+    PersonService personService;
+
     @Override
+    @Transactional
     public void addUser(String name, String password) {
 
         userNoteMapper.addUser(name,password);
 
+        try {
+            //personService.addUser();
+            test();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println(1/0);
     }
+
 
     @Override
     public User findUser(String name) {
@@ -88,5 +102,28 @@ public class UserServiceImpl implements UserService {
     }
 
 
+
+
+    @Override
+    @Transactional
+    public void addUser2(String name, String password) {
+
+        userNoteMapper.addUser(name,password);
+
+        try {
+            personService.addUser();
+        } catch (Exception e) {
+            e.printStackTrace();
+            ///throw e;
+        }
+    }
+
+    @Override
+    @Transactional
+    public void test(){
+        //userNoteMapper.addUser("ffv","fvdesdfcvsdf");
+        //System.out.println(1/0);
+        //System.out.println(1/0);
+    }
 }
 
