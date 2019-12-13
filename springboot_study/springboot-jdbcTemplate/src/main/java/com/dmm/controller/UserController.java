@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -85,6 +86,27 @@ public class UserController {
     public User list(@PathVariable String name){
 
         return userService.findUser(name);
+    }
+
+    @RequestMapping("/qq/note/{name}/")
+    @ResponseBody
+    public List<User> list2(@PathVariable String name){
+
+        User user=new User();
+        user.setName("hhhhhhh");
+        user.setPassword("10000000");
+        user.setApikey("hnjkl");
+
+        User user2=new User();
+        user2.setName("hhhhhhh");
+        user2.setPassword("10000000---------------");
+        user2.setApikey("hnjkl");
+        //return userService.findUser(name);
+
+        List list=new ArrayList();
+        list.add(user);
+        list.add(user2);
+        return list;
     }
 }
 

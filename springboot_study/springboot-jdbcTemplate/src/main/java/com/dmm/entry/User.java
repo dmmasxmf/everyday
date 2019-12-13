@@ -1,12 +1,17 @@
 package com.dmm.entry;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties({"password","apikey"})
+//@JsonIgnoreProperties(ignoreUnknown = true)
 public class User {
     private Long id;
 
     private String name;
 
+    //@JsonIgnore
     private String password;
-
+    //@JsonIgnore
     private String apikey;
 
     private Integer age;

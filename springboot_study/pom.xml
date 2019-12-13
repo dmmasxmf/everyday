@@ -29,6 +29,7 @@
         <module>springboot-easyexcel</module>
         <module>springboot-mongodb</module>
         <module>springboot-java-basics</module>
+        <module>springboot-annotation</module>
     </modules>
 
     <packaging>pom</packaging>
