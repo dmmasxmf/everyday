@@ -30,6 +30,9 @@
         <module>springboot-mongodb</module>
         <module>springboot-java-basics</module>
         <module>springboot-annotation</module>
+        <module>springboot-nacos</module>
+        <module>springboot-nacos-consumer</module>
+        <module>springboot-security</module>
     </modules>
 
     <packaging>pom</packaging>

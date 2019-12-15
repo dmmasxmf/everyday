@@ -1,0 +1,27 @@
+server:
+  port: 1000
+#nacos:
+#  # 配置文件的获取
+#  config:
+#    server-addr: 192.168.6.90:8848
+    #group:
+#nacos:
+#  # 服务发现
+#  discovery:
+#    server-addr: 192.168.6.90:8848
+spring:
+  cloud:
+    nacos:
+      config:
+        server-addr: 192.168.6.90:8848
+        file-extension: yaml
+      discovery:
+        ip: 192.168.6.201
+        server-addr: 192.168.6.90:8848
+  application:
+    name: example
+#  main:
+#    # Spring Boot 2.1 需要设定
+#    allow-bean-definition-overriding: true
+logging:
+  file: log.log

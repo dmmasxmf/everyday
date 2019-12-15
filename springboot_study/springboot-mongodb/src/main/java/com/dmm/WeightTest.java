@@ -18,7 +18,7 @@ public class WeightTest{
      * @param random
      * @return
      */
-    private ShortMessageWeightVo randomKey(List<ShortMessageWeightVo> list, Random random){
+    public ShortMessageWeightVo randomKey(List<ShortMessageWeightVo> list, Random random){
         //按照权重排序
         Collections.sort(list,(o1, o2)->{
 
