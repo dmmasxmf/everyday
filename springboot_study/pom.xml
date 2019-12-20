@@ -33,6 +33,8 @@
         <module>springboot-nacos</module>
         <module>springboot-nacos-consumer</module>
         <module>springboot-security</module>
+        <module>springboot-server-one</module>
+        <module>springboot-server-two</module>
     </modules>
 
     <packaging>pom</packaging>
