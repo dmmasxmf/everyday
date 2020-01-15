@@ -1,5 +1,7 @@
 package com.dmm.service.impl;
 
+import com.dmm.annotation.Limit;
+import com.dmm.annotation.LimitType;
 import com.dmm.entry.User;
 import com.dmm.entry.UserExample;
 import com.dmm.mapper.UserMapper;
@@ -144,6 +146,14 @@ public class UserServiceImpl implements UserService {
     public boolean abc() {
 
         System.out.println(1/0);
+        return false;
+    }
+
+    @Override
+    @Limit(name = "test",key = "testLimit",period =100,count = 10,limitType = LimitType.IP)
+    public boolean testLimit() {
+
+
         return false;
     }
 

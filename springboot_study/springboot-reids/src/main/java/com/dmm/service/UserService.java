@@ -29,5 +29,7 @@ public interface UserService {
 
     boolean abc();
 
+    boolean testLimit();
+
 }
 
