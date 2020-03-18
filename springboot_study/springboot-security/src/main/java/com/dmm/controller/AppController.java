@@ -94,5 +94,12 @@ public class AppController {
         return "qwert";
     }
 
+//    @RequestMapping("/login")
+//    @ResponseBody
+//    public String authorize1(@RequestParam String username, @RequestParam String password) {
+//
+//        return "qwert"+username+password;
+//    }
+
 }
 

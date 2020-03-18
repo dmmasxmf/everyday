@@ -36,6 +36,7 @@
         <module>springboot-server-one</module>
         <module>springboot-server-two</module>
         <module>springboot-xxljob-executor</module>
+        <module>springboot_pact</module>
     </modules>
 
     <packaging>pom</packaging>

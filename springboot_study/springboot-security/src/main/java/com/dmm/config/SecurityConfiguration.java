@@ -78,7 +78,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         return fsi;
                     }
                 })
-                .and().formLogin()
+                //忽略登录界面 提供登录参数和
+                .and().formLogin().loginProcessingUrl("/login")
                 .and().apply(securityConfigurerAdapter())
                 .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 //.and().httpBasic()
