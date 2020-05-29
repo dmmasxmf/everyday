@@ -37,6 +37,9 @@
         <module>springboot-server-two</module>
         <module>springboot-xxljob-executor</module>
         <module>springboot_pact</module>
+        <module>springboot-websocket</module>
+        <module>springboot-netty</module>
+        <module>springboot-elastic-search</module>
     </modules>
 
     <packaging>pom</packaging>
@@ -49,7 +52,7 @@
         <!--父工程只做声明依赖，采用parent的顶级父级做声明-->
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-dependencies</artifactId>
-        <version>2.0.0.RELEASE</version>
+        <version>2.2.7.RELEASE</version>
         <relativePath/><!--relativePath元素中的地址–本地仓库–远程仓库-->
     </parent>
 

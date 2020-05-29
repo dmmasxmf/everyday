@@ -1,13 +1,9 @@
 package com.dmm.test;
 
-import com.alibaba.fastjson.JSON;
-import com.aoyou.yunny.common.result.BaseResult;
-import com.aoyou.yunny.common.vo.TimeChargeVO;
+
 import com.rabbitmq.client.ConnectionFactory;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.concurrent.TimeoutException;
 
 /**

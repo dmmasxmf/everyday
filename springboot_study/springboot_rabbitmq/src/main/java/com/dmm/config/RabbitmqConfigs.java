@@ -1,13 +1,20 @@
 package com.dmm.config;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+/**
+ * 生产者确认机制
+ */
 @Configuration
 public class RabbitmqConfigs{
+
+    Logger logger= LoggerFactory.getLogger(RabbitmqConfigs.class);
 
     @Autowired
     private CachingConnectionFactory connectionFactory;
@@ -22,14 +29,17 @@ public class RabbitmqConfigs{
         rabbitTemplate.setMandatory(true);
         rabbitTemplate.setReturnCallback((message, replyCode, replyText, exchange, routingKey)
                 -> {
-            String id=message.getMessageProperties().getCorrelationId();
-            System.out.println("消息"+id+"应答码"+replyCode+"原有"+replyText+"交换机"+exchange+"路由"+routingKey);
+            String correlationId=message.getMessageProperties().getCorrelationId();
+            System.out.println("消息"+correlationId+"应答码"+replyCode+"原有"+replyText+"交换机"+exchange+"路由"+routingKey);
+            logger.debug("消息：{} 发送失败, 应答码：{} 原因：{} 交换机: {}  路由键: {}", correlationId, replyCode, replyText, exchange, routingKey);
         });
         rabbitTemplate.setConfirmCallback((correlationData,ack,cause)->{
             if(ack){
                 System.out.println("成功");
             }
-            else System.out.println("失败");
+            else {
+                System.out.println("失败");
+            }
         });
         return rabbitTemplate;
     }

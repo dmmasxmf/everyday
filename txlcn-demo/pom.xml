@@ -95,6 +95,23 @@
         </dependencies>
     </dependencyManagement>
 
+<!--上传到nexus仓库中，配合mvn deploy:deploy-->
+<distributionManagement>
+ <repository>
+     <!--这里的id需要和settings.xml中的server的id一致-->
+     <id>nexus-release</id>
+     <name>Nexus release Repository</name>
+     <!--releases仓库-->
+     <!-- <url>http://192.168.6.215:8091/repository/maven-releases/</url> -->
+	 <url>http://192.168.6.215:8091/repository/my_repo/</url>
+ </repository>
+ <snapshotRepository>
+     <id>nexus-snapshots</id>
+     <name>Nexus snapshots Repository</name>
+     <!--snapshots仓库-->
+     <url>http://192.168.6.215:8091/repository/maven-snapshots/</url>
+ </snapshotRepository>
+</distributionManagement>
 
 
 </project>

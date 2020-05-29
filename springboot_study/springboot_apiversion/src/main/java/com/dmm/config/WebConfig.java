@@ -27,16 +27,17 @@ public class WebConfig extends WebMvcConfigurationSupport {
 //        return handlerMapping;
 //    }
 
-    @Override
-    @Bean
-    public RequestMappingHandlerMapping requestMappingHandlerMapping() {
 
-        RequestMappingHandlerMapping apiHandlerMappingString = new ApiHandlerMappingString();
-
-        apiHandlerMappingString.setOrder(0);
-        apiHandlerMappingString.setInterceptors(getInterceptors());
-        return apiHandlerMappingString;
-    }
+//    @Bean
+//    @Override
+//    public RequestMappingHandlerMapping requestMappingHandlerMapping() {
+//
+//        RequestMappingHandlerMapping apiHandlerMappingString = new ApiHandlerMappingString();
+//
+//        apiHandlerMappingString.setOrder(0);
+//        apiHandlerMappingString.setInterceptors(getInterceptors());
+//        return apiHandlerMappingString;
+//    }
 
 
 }

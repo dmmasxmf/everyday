@@ -12,7 +12,7 @@ public class ConsumerMq {
 
     public static int i=0;
 
-    @RabbitListener(queues = "hello")
+//    @RabbitListener(queues = "hello")
     public void process(Message message, Channel channel) throws IOException {
         
         System.out.println("------------------------------------"+message);

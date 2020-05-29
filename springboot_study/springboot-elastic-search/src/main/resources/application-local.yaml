@@ -1,0 +1,8 @@
+server:
+  servlet:
+    context-path: /
+  port: 9302
+spring:
+  elasticsearch:
+    rest:
+      uris: 192.168.7.243:9200
