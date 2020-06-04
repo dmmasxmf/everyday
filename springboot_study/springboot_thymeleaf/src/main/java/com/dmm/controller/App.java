@@ -1,5 +1,6 @@
 package com.dmm.controller;
 
+
 import org.lionsoul.ip2region.*;
 
 import java.io.IOException;
@@ -11,7 +12,7 @@ import java.io.IOException;
  * @motto The more learn, the more found his ignorance.
  */
 
-public class AAABBB {
+public class App {
 
     public static void main(String[] args) throws DbMakerConfigException, IOException {
 
@@ -34,7 +35,7 @@ public class AAABBB {
         //String path=AAABBB.class.getResource("/ip2region.db").getPath();
         //System.out.println(path);
 
-        String dbfile=AAABBB.class.getResource("/ip2region.db").getPath();
+        String dbfile= App.class.getResource("/ip2region.db").getPath();
 
         DbSearcher searcher = new DbSearcher(config, dbfile);
 
